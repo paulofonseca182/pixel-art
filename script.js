@@ -23,6 +23,7 @@ if (!getColor) {
   color4.style.backgroundColor = getColor.color4;
 }
 
+/* Funcao que gera cores aleatorias */
 function generateColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
@@ -34,6 +35,21 @@ function generateColor() {
   return color;
 }
 
+const pixelFrame = document.getElementById('pixel-board');
+console.log(pixelFrame);
+
+for (let a = 0; a < 5; a += 1) {
+  const pixelSection = document.createElement('div');
+  pixelFrame.appendChild(pixelSection);
+  pixelSection.className = 'pixel-section';
+  for (let i = 0; i < 5; i += 1) {
+    const element = document.createElement('div');
+    pixelSection.appendChild(element);
+    element.className = 'pixel';
+  }
+}
+
+/* Capturando o botao e definindo o evento */
 btnGenerationColor.addEventListener('click', () => {
   color2.style.backgroundColor = generateColor();
   color3.style.backgroundColor = generateColor();
