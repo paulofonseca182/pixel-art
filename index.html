@@ -9,11 +9,14 @@
 </head>
 
 <body>
+  <section id="section-title">
+    <h1 id="title">Paleta de Cores</h1>
+  </section>
 
-  <h1 id="title">Paleta de Cores</h1>
+  <section>
+    <button id="button-random-color">Cores aleatórias</button>
+  </section>
   
-  <button id="button-random-color">Cores aleatórias</button>
-
   <section id="color-palette">
     <div class="color selected"></div>
     <div class="color"></div>
@@ -21,17 +24,31 @@
     <div class="color"></div>
   </section>
 
-  <button id="clear-board">Limpar</button>
+  <section id="board">
+    <input class="input" type="number" min="1" step="1" id="board-size" placeholder="Digite um valor de 5 ate 50">
+    <button id="generate-board">VQV</button>
+    <button id="clear-board">Limpar</button>
+  </section>
 
-  <input type="number" min="1" step="1" id="board-size" placeholder="Digite um valor de 5 ate 50">
-
-  <button id="generate-board">VQV</button>
+  <section id="save-design">
+    <div>
+      <button id="save1">Salvar</button>
+      <button id="design1">Desenho 1</button>
+    </div>
+    <div>
+      <button id="save2">Salvar</button>
+      <button id="design2">Desenho 2</button>
+    </div>
+    <div>
+      <button id="save3">Salvar</button>
+      <button id="design3">Desenho 3</button>
+    </div>
+  </section>
 
   <section id="pixel-board">
 
   </section>
-
-
+  <p id="um"></p>
   <script src="./script.js"></script>
 </body>
 

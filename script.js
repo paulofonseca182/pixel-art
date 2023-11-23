@@ -1,3 +1,4 @@
+/* Capturando os elementos */
 const color1 = document.getElementsByClassName('color')[0];
 const color2 = document.getElementsByClassName('color')[1];
 const color3 = document.getElementsByClassName('color')[2];
@@ -43,26 +44,8 @@ function generateColor() {
   return color;
 }
 
-/* Define a cor preta que e fixa, no localStorage */
-localStorage.setItem('colorSelected', 'black');
-
-/* Logica de atribuir a cor selecionada na paleta e salvar no localStorage */
-getCollorPalette.addEventListener('click', (e) => {
-  for (let index = 0; index < getClassSelected.length; index += 1) {
-    getClassSelected[index].classList.remove('selected');
-  }
-  if (e.target.className === 'color') {
-    e.target.classList.add('selected');
-    localStorage.setItem('colorSelected', e.target.style.backgroundColor);
-  }
-});
-
 /* Botao que gera cores aleatorias */
 btnGenerationColor.addEventListener('click', () => {
-  color2.style.backgroundColor = generateColor();
-  color3.style.backgroundColor = generateColor();
-  color4.style.backgroundColor = generateColor();
-
   const saveColor = {
     color2: color2.style.backgroundColor = generateColor(),
     color3: color3.style.backgroundColor = generateColor(),
@@ -72,7 +55,7 @@ btnGenerationColor.addEventListener('click', () => {
   localStorage.setItem('colorPalette', JSON.stringify(saveColor));
 });
 
-/* Logica para limpar as cores dos pixels */
+/* Botao para limpar as cores dos pixels */
 btnClear.addEventListener('click', () => {
   for (let i = 0; i < getPixel.length; i += 1) {
     getPixel[i].style.backgroundColor = 'white';
@@ -86,20 +69,10 @@ btnClear.addEventListener('click', () => {
   localStorage.setItem('pixelBoard', JSON.stringify(savePixels));
 });
 
-/* Logica de capturar a cor selecionada no localStorage e atribuir ao pixel */
-getPixelBoard.addEventListener('click', (e) => {
-  const getColorSelected = localStorage.getItem('colorSelected');
-  if (e.target.className === 'pixel') {
-    e.target.style.backgroundColor = getColorSelected;
-  }
-  const savePixels = [];
-  for (let i = 0; i < getPixel.length; i += 1) {
-    savePixels.push(getPixel[i].style.backgroundColor);
-  }
-  localStorage.setItem('pixelBoard', JSON.stringify(savePixels));
-});
+/* Define a cor preta que e fixa, no localStorage */
+localStorage.setItem('colorSelected', 'black');
 
-/* Cria o quadro de pixels */
+/* Funcao que define o valor de input no localStorage */
 function valueInputLocalStorage() {
   const valueInput = JSON.parse(localStorage.getItem('boardSize'));
   if (!valueInput) {
@@ -109,6 +82,7 @@ function valueInputLocalStorage() {
 
 valueInputLocalStorage();
 
+/* Cria o quadro de pixels */
 const creatPixelBoard = (value) => {
   for (let a = 0; a < value; a += 1) {
     const pixelSection = document.createElement('div');
@@ -122,11 +96,10 @@ const creatPixelBoard = (value) => {
     }
   }
 };
-
 const valueInput = JSON.parse(localStorage.getItem('boardSize'));
 creatPixelBoard(valueInput);
 
-/* Funcao que remove todos os pixels e section-pixel */
+/* Funcao que remove todos os parent de pixel e section-pixel */
 function removeChildren() {
   for (let i = getPixel.length - 1; i >= 0; i -= 1) {
     getPixel[i].parentNode.removeChild(getPixel[i]);
@@ -136,7 +109,7 @@ function removeChildren() {
   }
 }
 
-/* Logica que verifica o valor do input */
+/* Funcao que verifica o valor do input */
 function verifyInput(param) {
   if (param <= 50 && param >= 5) {
     localStorage.setItem('boardSize', param);
@@ -166,14 +139,95 @@ getBtnInput.addEventListener('click', () => {
   }
 });
 
+/* Logica de atribuir a cor selecionada na paleta e salvar no localStorage */
+getCollorPalette.addEventListener('click', (e) => {
+  for (let index = 0; index < getClassSelected.length; index += 1) {
+    getClassSelected[index].classList.remove('selected');
+  }
+  if (e.target.className === 'color') {
+    e.target.classList.add('selected');
+    localStorage.setItem('colorSelected', e.target.style.backgroundColor);
+  }
+});
+
+/* Logica de capturar a cor selecionada no localStorage e atribuir ao pixel */
+getPixelBoard.addEventListener('click', (e) => {
+  const getColorSelected = localStorage.getItem('colorSelected');
+  if (e.target.className === 'pixel') {
+    e.target.style.backgroundColor = getColorSelected;
+  }
+  console.log(getPixel[0].style.backgroundColor);
+  const savePixels = [];
+  for (let i = 0; i < getPixel.length; i += 1) {
+    savePixels.push(getPixel[i].style.backgroundColor);
+  }
+  localStorage.setItem('pixelBoard', JSON.stringify(savePixels));
+});
+
 /* funcao que carrega o quadro de pixels (desenho) salvo no localStorage */
-function loadPixels() {
-  const getPixelsColors = JSON.parse(localStorage.getItem('pixelBoard'));
-  if (getPixelsColors) {
+const getPixelsColors = JSON.parse(localStorage.getItem('pixelBoard'));
+function loadPixels(param) {
+  if (param) {
     for (let i = 0; i < getPixel.length; i += 1) {
-      getPixel[i].style.backgroundColor = getPixelsColors[i];
+      getPixel[i].style.backgroundColor = param[i];
     }
   }
 }
 
-loadPixels();
+loadPixels(getPixelsColors);
+
+/* Logica que salva o desenho feito e o recarrega */
+const save1 = document.getElementById('save1');
+const design1 = document.getElementById('design1');
+const save2 = document.getElementById('save2');
+const design2 = document.getElementById('design2');
+const save3 = document.getElementById('save3');
+const design3 = document.getElementById('design3');
+
+save1.addEventListener('click', () => {
+  const getPixelBoardLocalStorage = localStorage.getItem('pixelBoard');
+  const getBoardSizeLocalStorage = localStorage.getItem('boardSize');
+  localStorage.setItem('save1-pixelBoard', getPixelBoardLocalStorage);
+  localStorage.setItem('save1-boardSize', getBoardSizeLocalStorage);
+  alert('Desenho 1 salvo!');
+});
+
+design1.addEventListener('click', () => {
+  const newValueBoard = JSON.parse(localStorage.getItem('save1-boardSize'));
+  const newValuePixel = JSON.parse(localStorage.getItem('save1-pixelBoard'));
+  removeChildren();
+  creatPixelBoard(newValueBoard);
+  loadPixels(newValuePixel);
+});
+
+save2.addEventListener('click', () => {
+  const getPixelBoardLocalStorage = localStorage.getItem('pixelBoard');
+  const getBoardSizeLocalStorage = localStorage.getItem('boardSize');
+  localStorage.setItem('save2-pixelBoard', getPixelBoardLocalStorage);
+  localStorage.setItem('save2-boardSize', getBoardSizeLocalStorage);
+  alert('Desenho 2 salvo!');
+});
+
+design2.addEventListener('click', () => {
+  const newValueBoard = JSON.parse(localStorage.getItem('save2-boardSize'));
+  const newValuePixel = JSON.parse(localStorage.getItem('save2-pixelBoard'));
+  removeChildren();
+  creatPixelBoard(newValueBoard);
+  loadPixels(newValuePixel);
+});
+
+save3.addEventListener('click', () => {
+  const getPixelBoardLocalStorage = localStorage.getItem('pixelBoard');
+  const getBoardSizeLocalStorage = localStorage.getItem('boardSize');
+  localStorage.setItem('save3-pixelBoard', getPixelBoardLocalStorage);
+  localStorage.setItem('save3-boardSize', getBoardSizeLocalStorage);
+  alert('Desenho 3 salvo!');
+});
+
+design3.addEventListener('click', () => {
+  const newValueBoard = JSON.parse(localStorage.getItem('save3-boardSize'));
+  const newValuePixel = JSON.parse(localStorage.getItem('save3-pixelBoard'));
+  removeChildren();
+  creatPixelBoard(newValueBoard);
+  loadPixels(newValuePixel);
+});
