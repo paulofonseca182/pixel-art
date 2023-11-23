@@ -66,6 +66,15 @@ btnGenerationColor.addEventListener('click', () => {
   localStorage.setItem('colorPalette', JSON.stringify(saveColor));
 });
 
+/* Logica para limpar as cores dos pixels */
+const btnClear = document.getElementById('clear-board');
+const getPixel = document.getElementsByClassName('pixel');
+
+btnClear.addEventListener('click', () => {
+  for (let i = 0; i < getPixel.length; i += 1) {
+    getPixel[i].style.backgroundColor = 'white';
+  }
+});
 
 /* Logica de capturar a cor selecionada no localStorage e atribuir ao pixel */
 const getPixelBoard = document.getElementById('pixel-board');
