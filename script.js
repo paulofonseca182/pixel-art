@@ -35,19 +35,21 @@ function generateColor() {
   return color;
 }
 
-const pixelFrame = document.getElementById('pixel-board');
-console.log(pixelFrame);
+/* Define a cor preta que e fixa, no localStorage */
+localStorage.setItem('colorSelected', 'black');
 
-for (let a = 0; a < 5; a += 1) {
-  const pixelSection = document.createElement('div');
-  pixelFrame.appendChild(pixelSection);
-  pixelSection.className = 'pixel-section';
-  for (let i = 0; i < 5; i += 1) {
-    const element = document.createElement('div');
-    pixelSection.appendChild(element);
-    element.className = 'pixel';
+/* Logica de atribuir a cor selecionada na paleta e salvar no localStorage */
+const getCollorPalette = document.getElementById('color-palette');
+const getClassSelected = document.getElementsByClassName('selected');
+getCollorPalette.addEventListener('click', (e) => {
+  for (let index = 0; index < getClassSelected.length; index += 1) {
+    getClassSelected[index].classList.remove('selected');
   }
-}
+  if (e.target.className === 'color') {
+    e.target.classList.add('selected');
+    localStorage.setItem('colorSelected', e.target.style.backgroundColor);
+  }
+});
 
 /* Capturando o botao e definindo o evento */
 btnGenerationColor.addEventListener('click', () => {
@@ -63,3 +65,18 @@ btnGenerationColor.addEventListener('click', () => {
 
   localStorage.setItem('colorPalette', JSON.stringify(saveColor));
 });
+
+/* Cria o quadro de pixels */
+const pixelFrame = document.getElementById('pixel-board');
+console.log(pixelFrame);
+
+for (let a = 0; a < 5; a += 1) {
+  const pixelSection = document.createElement('div');
+  pixelFrame.appendChild(pixelSection);
+  pixelSection.className = 'pixel-section';
+  for (let i = 0; i < 5; i += 1) {
+    const element = document.createElement('div');
+    pixelSection.appendChild(element);
+    element.className = 'pixel';
+  }
+}

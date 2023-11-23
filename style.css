@@ -2,6 +2,10 @@ body {
   text-align: center;
 }
 
+#button-random-color {
+  margin-bottom: 25px;
+}
+
 .color {
   width: 40px;
   height: 40px;
@@ -9,8 +13,9 @@ body {
   display: inline-block;
 }
 
-#button-random-color {
-  margin-bottom: 25px;
+#color-palette {
+  width: auto;
+  height: auto;
 }
 
 .pixel {
