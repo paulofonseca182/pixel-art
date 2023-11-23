@@ -126,7 +126,7 @@ const creatPixelBoard = (value) => {
 const valueInput = JSON.parse(localStorage.getItem('valueInput'));
 creatPixelBoard(valueInput);
 
-/* Funcao que remove todos os pixels */
+/* Funcao que remove todos os pixels e section-pixel */
 function removeChildren() {
   for (let i = getPixel.length - 1; i >= 0; i -= 1) {
     getPixel[i].parentNode.removeChild(getPixel[i]);
@@ -136,16 +136,33 @@ function removeChildren() {
   }
 }
 
+/* Logica que verifica o valor do input */
+function verifyInput(param) {
+  if (param <= 50 && param >= 5) {
+    localStorage.setItem('valueInput', param);
+    const newValueInput = JSON.parse(localStorage.getItem('valueInput'));
+    removeChildren();
+    creatPixelBoard(newValueInput);
+  } if (param > 50) {
+    localStorage.setItem('valueInput', 50);
+    const newValueInputBig = JSON.parse(localStorage.getItem('valueInput'));
+    removeChildren();
+    creatPixelBoard(newValueInputBig);
+  } if (param < 5) {
+    localStorage.setItem('valueInput', 5);
+    const newValueInputSmall = JSON.parse(localStorage.getItem('valueInput'));
+    removeChildren();
+    creatPixelBoard(newValueInputSmall);
+  }
+}
+
 /* Botao para criar novo quadro */
 getBtnInput.addEventListener('click', () => {
   const getValueInput = document.getElementById('board-size').value;
   if (!getValueInput) {
     alert('Board inválido!');
-  } if (getValueInput > 0) {
-    localStorage.setItem('valueInput', getValueInput);
-    const newValueInput = JSON.parse(localStorage.getItem('valueInput'));
-    removeChildren();
-    creatPixelBoard(newValueInput);
+  } else {
+    verifyInput(getValueInput);
   }
 });
 
