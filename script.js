@@ -66,6 +66,16 @@ btnGenerationColor.addEventListener('click', () => {
   localStorage.setItem('colorPalette', JSON.stringify(saveColor));
 });
 
+
+/* Logica de capturar a cor selecionada no localStorage e atribuir ao pixel */
+const getPixelBoard = document.getElementById('pixel-board');
+getPixelBoard.addEventListener('click', (e) => {
+  const getColorSelected = localStorage.getItem('colorSelected');
+  if (e.target.className === 'pixel') {
+    e.target.style.backgroundColor = getColorSelected;
+  }
+});
+
 /* Cria o quadro de pixels */
 const pixelFrame = document.getElementById('pixel-board');
 console.log(pixelFrame);
