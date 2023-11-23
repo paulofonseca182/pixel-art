@@ -19,8 +19,8 @@ body {
   box-shadow: 15px 15px 10px rgba(145, 145, 145, 0.4);
 }
 
-#title{
-  font-family:'Arial Narrow Bold', sans-serif ;
+#title {
+  font-family: 'Arial Narrow Bold', sans-serif;
   color: white;
 }
 
@@ -33,9 +33,8 @@ body {
   font-size: large;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
-  font-family:'Arial Narrow Bold', sans-serif ;
-  font-size: larger;
-  cursor:pointer;
+  font-family: 'Arial Narrow Bold', sans-serif;
+  cursor: pointer;
 }
 
 .color {
@@ -45,7 +44,7 @@ body {
   display: inline-block;
   border-radius: 50px;
   box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
-  cursor:pointer;
+  cursor: pointer;
 }
 
 #board {
@@ -62,10 +61,10 @@ body {
   font-size: large;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.input{
+.input {
   height: 20px;
   width: 220px;
   border: 3px solid #19fc00;
@@ -80,7 +79,7 @@ body {
   font-size: large;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
-  cursor:pointer;
+  cursor: pointer;
 }
 
 #save-design {
@@ -88,10 +87,15 @@ body {
   justify-content: space-evenly;
   width: 70%;
   margin: 25px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-#save1, #design1, #save2, #design2, #save3, #design3 {
+#save1, 
+#design1, 
+#save2, 
+#design2, 
+#save3, 
+#design3 {
   background: linear-gradient(90deg, #00dffc, #05444d, #08262b);
   width: 130px;
   height: 30px;
@@ -99,8 +103,8 @@ body {
   font-size: large;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
-  cursor:pointer;
-}   
+  cursor: pointer;
+}
 
 #pixel-board {
   margin-top: 25px;
@@ -112,7 +116,7 @@ body {
   border: solid 1px black;
   display: inline-block;
   margin-left: 3px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .pixel:hover {
