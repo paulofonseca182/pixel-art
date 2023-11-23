@@ -74,6 +74,13 @@ btnClear.addEventListener('click', () => {
   for (let i = 0; i < getPixel.length; i += 1) {
     getPixel[i].style.backgroundColor = 'white';
   }
+
+  const getPixelsColors = JSON.parse(localStorage.getItem('pixelBoard'));
+  const savePixels = [];
+  for (let i = 0; i < getPixelsColors.length; i += 1) {
+    savePixels.push(getPixelsColors[i] = 'white');
+  }
+  localStorage.setItem('pixelBoard', JSON.stringify(savePixels));
 });
 
 /* Logica de capturar a cor selecionada no localStorage e atribuir ao pixel */
@@ -83,19 +90,41 @@ getPixelBoard.addEventListener('click', (e) => {
   if (e.target.className === 'pixel') {
     e.target.style.backgroundColor = getColorSelected;
   }
+  const savePixels = [];
+  for (let i = 0; i < getPixel.length; i += 1) {
+    savePixels.push(getPixel[i].style.backgroundColor);
+  }
+  localStorage.setItem('pixelBoard', JSON.stringify(savePixels));
 });
 
 /* Cria o quadro de pixels */
 const pixelFrame = document.getElementById('pixel-board');
 console.log(pixelFrame);
 
-for (let a = 0; a < 5; a += 1) {
-  const pixelSection = document.createElement('div');
-  pixelFrame.appendChild(pixelSection);
-  pixelSection.className = 'pixel-section';
-  for (let i = 0; i < 5; i += 1) {
-    const element = document.createElement('div');
-    pixelSection.appendChild(element);
-    element.className = 'pixel';
+const creatPixelBoard = () => {
+  for (let a = 0; a < 5; a += 1) {
+    const pixelSection = document.createElement('div');
+    pixelFrame.appendChild(pixelSection);
+    pixelSection.className = 'pixel-section';
+    for (let i = 0; i < 5; i += 1) {
+      const element = document.createElement('div');
+      pixelSection.appendChild(element);
+      element.className = 'pixel';
+      element.style.backgroundColor = 'white';
+    }
+  }
+};
+
+creatPixelBoard();
+
+/* funcao que carrega o quadro de pixels (desenho) salvo no localStorage */
+function loadPixels() {
+  const getPixelsColors = JSON.parse(localStorage.getItem('pixelBoard'));
+  if (getPixelsColors) {
+    for (let i = 0; i < getPixel.length; i += 1) {
+      getPixel[i].style.backgroundColor = getPixelsColors[i];
+    }
   }
 }
+
+loadPixels();
