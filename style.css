@@ -1,9 +1,41 @@
 body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  background-image: url('https://images4.alphacoders.com/594/594600.jpg');
+  background-size: cover;
+}
+
+#section-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #19fc00, #054d05, #082b08);
+  height: 60px;
+  width: 500px;
+  margin: 25px;
+  border: solid 2px white;
+  box-shadow: 15px 15px 10px rgba(145, 145, 145, 0.4);
+}
+
+#title{
+  font-family:'Arial Narrow Bold', sans-serif ;
+  color: white;
 }
 
 #button-random-color {
   margin-bottom: 25px;
+  background: linear-gradient(90deg, #00dffc, #05444d, #08262b);
+  width: 200px;
+  height: 50px;
+  color: white;
+  font-size: large;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
+  font-family:'Arial Narrow Bold', sans-serif ;
+  font-size: larger;
+  cursor:pointer;
 }
 
 .color {
@@ -11,6 +43,67 @@ body {
   height: 40px;
   border: solid 1px black;
   display: inline-block;
+  border-radius: 50px;
+  box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
+  cursor:pointer;
+}
+
+#board {
+  margin: 20px;
+}
+
+#generate-board {
+  margin-right: 15px;
+  margin-left: 15px;
+  background: linear-gradient(90deg, #19fc00, #054d05, #082b08);
+  width: 100px;
+  height: 30px;
+  color: white;
+  font-size: large;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
+  cursor:pointer;
+}
+
+.input{
+  height: 20px;
+  width: 220px;
+  border: 3px solid #19fc00;
+  box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
+}
+
+#clear-board {
+  background: linear-gradient(90deg, #19fc00, #054d05, #082b08);
+  width: 100px;
+  height: 30px;
+  color: white;
+  font-size: large;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
+  cursor:pointer;
+}
+
+#save-design {
+  display: flex;
+  justify-content: space-evenly;
+  width: 70%;
+  margin: 25px;
+  cursor:pointer;
+}
+
+#save1, #design1, #save2, #design2, #save3, #design3 {
+  background: linear-gradient(90deg, #00dffc, #05444d, #08262b);
+  width: 130px;
+  height: 30px;
+  color: white;
+  font-size: large;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgba(145, 145, 145, 0.7);
+  cursor:pointer;
+}   
+
+#pixel-board {
+  margin-top: 25px;
 }
 
 .pixel {
@@ -19,5 +112,9 @@ body {
   border: solid 1px black;
   display: inline-block;
   margin-left: 3px;
-  background-color: white;
+  cursor:pointer;
+}
+
+.pixel:hover {
+  border: solid 1px rgb(250, 0, 0);
 }
