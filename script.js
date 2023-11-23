@@ -101,9 +101,9 @@ getPixelBoard.addEventListener('click', (e) => {
 
 /* Cria o quadro de pixels */
 function valueInputLocalStorage() {
-  const valueInput = JSON.parse(localStorage.getItem('valueInput'));
+  const valueInput = JSON.parse(localStorage.getItem('boardSize'));
   if (!valueInput) {
-    localStorage.setItem('valueInput', 5);
+    localStorage.setItem('boardSize', 5);
   }
 }
 
@@ -123,7 +123,7 @@ const creatPixelBoard = (value) => {
   }
 };
 
-const valueInput = JSON.parse(localStorage.getItem('valueInput'));
+const valueInput = JSON.parse(localStorage.getItem('boardSize'));
 creatPixelBoard(valueInput);
 
 /* Funcao que remove todos os pixels e section-pixel */
@@ -139,18 +139,18 @@ function removeChildren() {
 /* Logica que verifica o valor do input */
 function verifyInput(param) {
   if (param <= 50 && param >= 5) {
-    localStorage.setItem('valueInput', param);
-    const newValueInput = JSON.parse(localStorage.getItem('valueInput'));
+    localStorage.setItem('boardSize', param);
+    const newValueInput = JSON.parse(localStorage.getItem('boardSize'));
     removeChildren();
     creatPixelBoard(newValueInput);
   } if (param > 50) {
-    localStorage.setItem('valueInput', 50);
-    const newValueInputBig = JSON.parse(localStorage.getItem('valueInput'));
+    localStorage.setItem('boardSize', 50);
+    const newValueInputBig = JSON.parse(localStorage.getItem('boardSize'));
     removeChildren();
     creatPixelBoard(newValueInputBig);
   } if (param < 5) {
-    localStorage.setItem('valueInput', 5);
-    const newValueInputSmall = JSON.parse(localStorage.getItem('valueInput'));
+    localStorage.setItem('boardSize', 5);
+    const newValueInputSmall = JSON.parse(localStorage.getItem('boardSize'));
     removeChildren();
     creatPixelBoard(newValueInputSmall);
   }
